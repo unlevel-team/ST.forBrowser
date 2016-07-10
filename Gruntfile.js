@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 	  
     pkg: grunt.file.readJSON('package.json'),
     
+    
     // Babel task (for transpile code)
     babel: {
         options: {
@@ -133,9 +134,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-babel');
-
+  
 
   grunt.registerTask('test', ['babel', 'jshint', 'qunit']);
+  
+  grunt.registerTask('compile', ['babel', 'browserify', 'jshint']);
 
   grunt.registerTask('default', ['babel', 'browserify', 'jshint', 'uglify']);
   

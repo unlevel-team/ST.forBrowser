@@ -6,11 +6,14 @@
   "scripts": {
     "startdev": "node --harmony lib/STServerEngine.js dev",
     "start": "node lib_es5/STServerEngine.js",
-    "gulp": "gulp",
-    "toES5": "gulp babel",
+    "grunt": "grunt",
+    "toES5": "grunt compile",
     "jsDocs": "gulp docs"
   },
-  "main": "lib/serverEngine/ST_Server.js",
+  "main": "build/stforBrowser/stforBrowser.js",
+  "files": [
+    "build/stforBrowser/stforBrowser.js"
+  ],
   "keywords": [
     "st.forbrowser",
     "st",
@@ -37,6 +40,7 @@
     "grunt-contrib-qunit": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-jsdoc": "^2.1.0",
     "gulp": "*",
     "gulp-babel": "*",
     "gulp-sourcemaps": "*",

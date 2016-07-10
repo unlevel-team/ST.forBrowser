@@ -1,15 +1,25 @@
 {
-  "name": "st-forbrowser",
-  "version": "0.0.1-alpha00-build001",
+  "name": "st.forbrowser",
   "authors": [
-    "Unlevel Team <unlevelteam@gmail.com>"
+    "SomeThings for browser"
   ],
   "private": true,
-  "description": "SomeThins library for browsers.",
+  "version": "0.0.1-alpha00-build001",
   "license": "MIT",
-  "dependencies": {
+  
+  "main": [
+           "dist/stforBrowser/stforBrowser.js"
+         ],
+  
+  "ignore": [
+    "**/.*",
+    "node_modules/",
+    "bower_components/",
+    "test/",
+    "tests",
+    "src/",
+    "build/"
+  ]
 
-  },
-  "devDependencies": {
-  }
-}
+
+}	
