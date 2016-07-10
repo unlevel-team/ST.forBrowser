@@ -10,9 +10,17 @@
     "toES5": "grunt compile",
     "jsDocs": "gulp docs"
   },
-  "main": "build/stforBrowser/stforBrowser.js",
+  "main": "dist/stforBrowser/stforBrowser.js",
   "files": [
-    "build/stforBrowser/stforBrowser.js"
+    "src/",
+	".gitignore",
+	"package.json",
+    "readme.md",
+    "jsdoc_conf.json",
+    "gulpfile.js",
+    "Gruntfile.js",
+    "bower.json",
+    ".babelrc",
   ],
   "keywords": [
     "st.forbrowser",
