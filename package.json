@@ -1,0 +1,51 @@
+{
+  "name": "st.forbrowser",
+  "version": "0.0.1-alpha00-build001",
+  "description": "ST for Browser",
+  "author": "Unlevel Team <unlevelteam@gmail.com>",
+  "scripts": {
+    "startdev": "node --harmony lib/STServerEngine.js dev",
+    "start": "node lib_es5/STServerEngine.js",
+    "gulp": "gulp",
+    "toES5": "gulp babel",
+    "jsDocs": "gulp docs"
+  },
+  "main": "lib/serverEngine/ST_Server.js",
+  "keywords": [
+    "st.forbrowser",
+    "st",
+    "IoT",
+    "SomeThings",
+    "sensor",
+    "actuator"
+  ],
+  "dependencies": {
+    "body-parser": "~1.15",
+    "source-map-support": "*"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-es2015-no-strict": "^6.7.0",
+    "babel-preset-es2015-script": "^1.0.0",
+    "grunt": "^1.0.0",
+    "grunt-babel": "^6.0.0",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-qunit": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "gulp": "*",
+    "gulp-babel": "*",
+    "gulp-sourcemaps": "*",
+    "jsdoc": "*",
+    "load-grunt-tasks": "^1.0.0",
+    "time-grunt": "^1.0.0"
+  },
+  "preferGlobal": false,
+  "private": true,
+  "analyze": true,
+  "license": "MIT"
+}
