@@ -1,3 +1,4 @@
+"use strict"
 
 /**
  * 
@@ -20,18 +21,31 @@
 
 
 
-let Node = require('./node.js');
-let Server = require('./server.js');
+let Node = require('./node.js').Node;
+let Server = require('./server.js').Server;
 
 
 
-let _lib = {
-	"Server": Server,
-	"Node": Node	
+//if (st === undefined) {
+//	let st = {};
+//}
+
+
+let st = {};
+
+st.forbrowser = {
+	"Node": Node,
+	"Server": Server
 };
 
 
-module.exports = _lib;
+
+//let _lib = {
+//		"st": st
+//	};
+
+module.exports = st.forbrowser;
+
 
 
 

@@ -1,3 +1,4 @@
+"use strict";
 
 /**
  * 
@@ -17,13 +18,23 @@
  * 
  */
 
-var Node = require('./node.js');
-var Server = require('./server.js');
+var Node = require('./node.js').Node;
+var Server = require('./server.js').Server;
 
-var _lib = {
-  "Server": Server,
-  "Node": Node
+//if (st === undefined) {
+//	let st = {};
+//}
+
+var st = {};
+
+st.forbrowser = {
+  "Node": Node,
+  "Server": Server
 };
 
-module.exports = _lib;
+//let _lib = {
+//		"st": st
+//	};
+
+module.exports = st.forbrowser;
 //# sourceMappingURL=stforBrowser.js.map

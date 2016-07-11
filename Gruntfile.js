@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     
     
-    // Babel task (for transpile code)
+    // Babel task (for transpile code - ES6 to ES5)
     babel: {
         options: {
             sourceMap: true,
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     
     
     
-    // Browserify task (for transpile code)
+    // Browserify task (for transpile code - Modules into one file)
     
 //    browserify: {
 //    	build: {
@@ -49,7 +49,8 @@ module.exports = function(grunt) {
     		},
     		options: {
     			browserifyOptions: {
-    				debug: true
+    				debug: true,
+    				standalone: "st_forBrowser"
     			}
     		}
     	}

@@ -3,13 +3,7 @@
   "version": "0.0.1-alpha00-build001",
   "description": "ST for Browser",
   "author": "Unlevel Team <unlevelteam@gmail.com>",
-  "scripts": {
-    "startdev": "node --harmony lib/STServerEngine.js dev",
-    "start": "node lib_es5/STServerEngine.js",
-    "grunt": "grunt",
-    "toES5": "grunt compile",
-    "jsDocs": "gulp docs"
-  },
+
   "main": "dist/stforBrowser/stforBrowser.js",
   "files": [
     "src/",
@@ -20,7 +14,7 @@
     "gulpfile.js",
     "Gruntfile.js",
     "bower.json",
-    ".babelrc",
+    ".babelrc"
   ],
   "keywords": [
     "st.forbrowser",
@@ -30,6 +24,17 @@
     "sensor",
     "actuator"
   ],
+  
+  "scripts": {
+    "startdev": "node --harmony lib/STServerEngine.js dev",
+    "start": "node lib_es5/STServerEngine.js",
+    "grunt": "grunt",
+    "toES5": "grunt compile",
+    "jsDocs": "gulp docs"
+  },
+  
+  
+  
   "dependencies": {
     "body-parser": "~1.15",
     "source-map-support": "*"

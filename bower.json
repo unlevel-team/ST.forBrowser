@@ -8,9 +8,14 @@
   "license": "MIT",
   
   "main": [
-           "dist/stforBrowser/stforBrowser.js"
-         ],
-  
+     "dist/stforBrowser/stforBrowser.js",
+  ],
+         
+  "moduleType": [
+        "amd",
+        "globals"
+  ],
+      
   "ignore": [
     "**/.*",
     "node_modules/",
