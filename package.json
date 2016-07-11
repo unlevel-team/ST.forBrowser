@@ -29,7 +29,7 @@
     "startdev": "node --harmony lib/STServerEngine.js dev",
     "start": "node lib_es5/STServerEngine.js",
     "grunt": "grunt",
-    "toES5": "grunt compile",
+    "toES5": "grunt",
     "jsDocs": "gulp docs"
   },
   

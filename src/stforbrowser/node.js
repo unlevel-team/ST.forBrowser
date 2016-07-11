@@ -1,6 +1,17 @@
 "use strict"
 
 /**
+ * Node module for...
+ * 
+ * SomeThings library for browser
+ * 
+ * 
+ */
+
+
+
+
+/**
  * 
  * @class
  * @memberof st.forbrowser

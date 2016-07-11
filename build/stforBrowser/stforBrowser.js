@@ -25,11 +25,15 @@ var Server = require('./server.js').Server;
 //	let st = {};
 //}
 
-var st = {};
+var _get_Server_Config = require('./server.js').get_Server_Config;
 
+var st = {};
 st.forbrowser = {
+
   "Node": Node,
-  "Server": Server
+
+  "Server": Server,
+  "get_Server_Config": _get_Server_Config
 };
 
 //let _lib = {

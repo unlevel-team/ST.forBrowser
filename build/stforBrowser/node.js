@@ -1,6 +1,14 @@
 "use strict";
 
 /**
+ * Node module for...
+ * 
+ * SomeThings library for browser
+ * 
+ * 
+ */
+
+/**
  * 
  * @class
  * @memberof st.forbrowser
@@ -15,11 +23,11 @@ var Node =
  * @constructs Node
  */
 function Node() {
-	_classCallCheck(this, Node);
+  _classCallCheck(this, Node);
 };
 
 var _lib = {
-	"Node": Node
+  "Node": Node
 
 };
 
