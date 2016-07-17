@@ -19,7 +19,7 @@ var paths = {
 // Task for doument code
 gulp.task('docs', function(done) {
 //  child_exec('node ./node_modules/jsdoc/jsdoc.js ./lib -c ./jsdoc.json', undefined, done);
-  child_exec('node ./node_modules/jsdoc/jsdoc.js -c ./jsdoc_conf.json', undefined, done);
+  child_exec('node ./node_modules/jsdoc/jsdoc.js -p -c ./jsdoc_conf.json', undefined, done);
 });
 
 

@@ -143,7 +143,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['babel', 'browserify', 'jshint', 'uglify']);
   
-  
   grunt.registerTask('default_old2', ['babel', 'concat', 'jshint', 'uglify']);
 
   grunt.registerTask('default_old1', ['babel', 'jshint', 'concat', 'uglify']);

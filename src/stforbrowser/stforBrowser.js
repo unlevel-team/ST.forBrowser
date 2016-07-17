@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 /**
  * 
@@ -20,28 +20,48 @@
  */
 
 
+/**
+ * import Nodes library
+ * @ignore
+ */
+let Nodes_Lib = require('./nodes/st_nodes.js');
 
-let Node = require('./node.js').Node;
-let Server = require('./server.js').Server;
+/**
+ * import Server library
+ * @ignore
+ */
+let Server_Lib = require('./server/st_server.js');
 
 
+/**
+ * import Services library
+ * @ignore
+ */
+let Services_Lib = require('./services/stServices.js');
 
-//if (st === undefined) {
-//	let st = {};
-//}
+
+/**
+ * import Engines library
+ * @ignore
+ */
+let Engines_Lib = require('./engines/stEngines.js');
 
 
-let _get_Server_Config = require('./server.js').get_Server_Config;
-
+/**
+ * import Network library
+ * @ignore
+ */
+let Network_Lib = require('./network/stNetwork.js');
 
 
 let st = {};
 st.forbrowser = {
-		
-	"Node": Node,
 	
-	"Server": Server,
-	"get_Server_Config": _get_Server_Config,
+	"nodes": Nodes_Lib._public,
+	"server": Server_Lib._public,
+	"services": Services_Lib._public,
+	"engines": Engines_Lib._public,
+	"network": Network_Lib._public
 };
 
 
