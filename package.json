@@ -1,12 +1,13 @@
 {
   "name": "st.forbrowser",
-  "version": "0.0.1-alpha00-build001",
+  "version": "0.0.1-beta00-build001",
   "description": "ST for Browser",
   "author": "Unlevel Team <unlevelteam@gmail.com>",
 
-  "main": "dist/stforBrowser/stforBrowser.js",
+  "main": "dist/stforBrowser/stforbrowser.min.js",
   "files": [
     "src/",
+    "dist/",
 	".gitignore",
 	"package.json",
     "readme.md",

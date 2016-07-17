@@ -4,11 +4,11 @@
     "SomeThings for browser"
   ],
   "private": true,
-  "version": "0.0.1-alpha00-build001",
+  "version": "0.0.1-beta00-build001",
   "license": "MIT",
   
   "main": [
-     "dist/stforBrowser/stforBrowser.js",
+     "dist/stforBrowser/stforbrowser.min.js",
   ],
          
   "moduleType": [
