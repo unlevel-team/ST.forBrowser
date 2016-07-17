@@ -8,6 +8,7 @@
   "files": [
     "src/",
     "dist/",
+    "docs/",
 	".gitignore",
 	"package.json",
     "readme.md",
