@@ -1,13 +1,8 @@
 # ST for Browser
 
+SomeThings for browser
 
-## Compile App
-	
-	npm run toES5
-	
-	
-## Generate documents
-	
-	npm run jsDocs	
+Open source IoT network and framework...
 
+see wiki for detail...
 

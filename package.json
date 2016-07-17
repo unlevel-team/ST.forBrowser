@@ -7,6 +7,7 @@
   "main": "dist/stforBrowser/stforBrowser.js",
   "files": [
     "src/",
+    "docs/",
 	".gitignore",
 	"package.json",
     "readme.md",

@@ -23,6 +23,7 @@
     "test/",
     "tests",
     "src/",
+    "docs/",
     "build/"
   ]
 
