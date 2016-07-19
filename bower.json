@@ -10,7 +10,7 @@
   "license": "MIT",
   
   "main": [
-     "dist/stforBrowser/stforbrowser.js"
+     "dist/stforBrowser/stforBrowser.js"
   ],
          
   "moduleType": [
