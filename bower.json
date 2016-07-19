@@ -3,7 +3,7 @@
   "description": "ST for Browser",
   "authors": [
 	  { "name": "Unlevel Team", "email": "unlevelteam@gmail.com" }
-  ]
+  ],
   
   "private": true,
   "version": "0.0.1-alpha00-build001",
