@@ -25,7 +25,7 @@
     "src/",
     "docs/",
     "build/"
-  ]
+  ],
 
   
   "dependencies": {
