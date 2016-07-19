@@ -1,5 +1,5 @@
 {
-  "name": "st-forbrowser",
+  "name": "st-forBrowser",
   "authors": [
     "SomeThings for browser"
   ],
@@ -26,5 +26,14 @@
     "docs/",
     "build/"
   ]
+
+  
+  "dependencies": {
+	  
+  },
+  
+  "devDependencies": {
+	  
+  }
 
 }
