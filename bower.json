@@ -5,7 +5,7 @@
 	  { "name": "Unlevel Team", "email": "unlevelteam@gmail.com" }
   ],
   
-  "private": true,
+  "private": false,
   "version": "0.0.1-beta00-build001",
   "license": "MIT",
   
