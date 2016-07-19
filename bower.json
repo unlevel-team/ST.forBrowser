@@ -1,8 +1,10 @@
 {
   "name": "st-forbrowser",
+  "description": "ST for Browser",
   "authors": [
-    "SomeThings for browser"
-  ],
+	  { "name": "Unlevel Team", "email": "unlevelteam@gmail.com" }
+  ]
+  
   "private": true,
   "version": "0.0.1-alpha00-build001",
   "license": "MIT",
@@ -34,6 +36,11 @@
   
   "devDependencies": {
 	  
+  },
+  
+  "repository": {
+	  "type": "git",
+	  "url": "git://github.com:unlevel-team/st-forbrowser.git#public"
   }
 
 }
