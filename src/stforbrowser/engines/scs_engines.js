@@ -305,6 +305,127 @@ class SCS_Requests_forEngines {
 	
 	
 	/**
+	 * Set sensor options
+	 * 
+	 * @param {object} options - Options
+	 * @param {string} options.sensorID - sensor ID
+	 * @param {object} options.sensorOptions - sensor options
+	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
+	 * @param {function} [options._onSuccess] - Function to run on success
+	 * @param {function} [options._onError] - Function to run on error
+	 * @param {function} [options._onComplete] - Function to run on complete
+	 * 
+	 * @throws Exception
+	 * 
+	 * @returns {Promise}
+	 */
+	set_SensorOptions(options) {
+		
+		if (options === undefined ||
+				options === null) {
+			options = {};
+		}
+		
+		
+		if (options.sensorID === undefined) {
+			throw "sensorID is required";
+		}
+		let _sensorID = options.sensorID;
+		
+		if (options.sensorOptions === undefined) {
+			throw "sensorOptions is required";
+		}
+		let _sensorOptions = options.sensorOptions;
+		
+		if (options.scsClient === undefined) {
+			throw "scsClient is required";
+		}
+		let _scsClient = options.scsClient;
+		
+		// http://{{stServer}}:{{cc}}/ngn/Sensors/{{nodeID}}.{{sensorID}}/options
+		let _url = "/ngn/Sensors/" + _sensorID + "/options/";
+		
+		var _postData = {
+			'options': _sensorOptions
+		};
+		
+		
+		return _scsClient.exec_SCS_Request({
+			"scsRequest": {
+				"url": _url,
+				"type": "POST",
+				"data": JSON.stringify(_postData),
+				"dataType": "json",
+				"contentType": "application/json; charset=utf-8",
+				
+				"options": options
+			}
+		});
+		
+	}
+	
+	
+	/**
+	 * Set actuator options
+	 * 
+	 * @param {object} options - Options
+	 * @param {string} options.actuatorID - actuator ID
+	 * @param {object} options.actuatorOptions - actuator options
+	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
+	 * @param {function} [options._onSuccess] - Function to run on success
+	 * @param {function} [options._onError] - Function to run on error
+	 * @param {function} [options._onComplete] - Function to run on complete
+	 * 
+	 * @throws Exception
+	 * 
+	 * @returns {Promise}
+	 */
+	set_ActuatorOptions(options) {
+		
+		if (options === undefined ||
+				options === null) {
+			options = {};
+		}
+		
+		
+		if (options.actuatorID === undefined) {
+			throw "actuatorID is required";
+		}
+		let _actuatorID = options.actuatorID;
+		
+		if (options.actuatorOptions === undefined) {
+			throw "actuatorOptions is required";
+		}
+		let _actuatorOptions = options.actuatorOptions;
+		
+		if (options.scsClient === undefined) {
+			throw "scsClient is required";
+		}
+		let _scsClient = options.scsClient;
+		
+		// http://{{stServer}}:{{cc}}/ngn/Actuators/{{nodeID}}.{{actuatorID}}/options
+		let _url = "/ngn/Actuators/" + _actuatorID + "/options/";
+		
+		var _postData = {
+				'options': _actuatorOptions
+			};
+		
+		return _scsClient.exec_SCS_Request({
+			"scsRequest": {
+				"url": _url,
+				"type": "POST",
+				"data": JSON.stringify(_postData),
+				"dataType": "json",
+				"contentType": "application/json; charset=utf-8",
+				
+				"options": options
+			}
+		});
+		
+	}
+	
+	
+	/**
 	 * Start sensor
 	 * 
 	 * @param {object} options - Options

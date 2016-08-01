@@ -2,7 +2,7 @@
 
 
 /**
- * AJAX method based on jQuery
+ * AJAX Get method based on jQuery
  * 
  * @function
  * @memberof st.forbrowser.network
@@ -22,19 +22,6 @@
 function jQuery_ajax(options) {
 	
 	
-	let _dataType = null;
-	if (options.dataType === "json") {
-		_dataType = "jsonp";
-	} else {
-		_dataType = options.dataType;
-	}
-	
-	
-//    crossDomain: true,
-//    type:"GET",
-//    contentType: "application/json; charset=utf-8",
-//    async:false,
-	
 	jQuery.ajax({
 	    // URL for request
 	    url : options.url,
@@ -43,16 +30,16 @@ function jQuery_ajax(options) {
 	    data : options.data,
 	 
 	    // type of request POST | GET
-	    type : options.type,
+	    type: options.type,
 	 
 	    // response type
-	    dataType : _dataType,
+	    dataType : options.dataType,
 	    
 	    // Allow crossdomain
 	    crossDomain: true,
 	    
 	    // Content type
-	    contentType: "application/json; charset=utf-8",
+	    contentType: options.contentType,
 	    
 	    // Asynchronous
 	    async: true,
@@ -92,8 +79,6 @@ function jQuery_ajax(options) {
 	
 	
 }
-
-
 
 
 
