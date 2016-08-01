@@ -16,23 +16,23 @@
  * 
  * @ignore
  */
-let jQuery_ajax = require("./jQuery_ajax.js").jQuery_ajax;
+let _jQuery_ajax = require("./jQuery_ajax.js").jQuery_ajax;
 
 
 /**
  * import SCS for Network
  * @ignore
  */
-let SCS_Network_Lib = require('./scs_network.js');
+let _SCS_Network_Lib = require('./scs_network.js');
 
 
 let _lib = {
 		
-	"jQuery_ajax": jQuery_ajax,
+	"jQuery_ajax": _jQuery_ajax,
 	
 	"_public": {
-		"jQuery_ajax": jQuery_ajax,
-		"get_SCS_Requests": SCS_Network_Lib._public.get_SCS_Requests
+		"jQuery_ajax": _jQuery_ajax,
+		"get_SCS_Requests": _SCS_Network_Lib._public.get_SCS_Requests
 	}
 };
 

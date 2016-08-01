@@ -88,7 +88,6 @@ function exec_SCSRequest(options) {
 	}
 	
 	
-	
 	let _scsRequest = null;
 	if (options.scsRequest === undefined) {
 		throw "options.scsRequest is required";
@@ -111,43 +110,39 @@ function exec_SCSRequest(options) {
 	let _url = "http://" + _scsRef.netLocation + ":" + _scsRef.controlPort +
 			_scsRequest.url;
 	
+	// console.log("<~i~> exec_SCSRequest");	// TODO REMOVE DEBUG LOG
+	// console.log(_scsRequest);	// TODO REMOVE DEBUG LOG
+	// console.log(_scsRequest.options);	// TODO REMOVE DEBUG LOG
 	
-	
-	// Import jQuery_ajax
-	let jQuery_ajax = require('../network/stNetwork.js').jQuery_ajax;
-	
+	let _jQuery_ajax = require('../network/stNetwork.js').jQuery_ajax;
 	
 	let promise = new Promise(function(resolve, reject) {
 		// do a thing, possibly async, then…
 		// resolve or reject...
 		
 		
-		jQuery_ajax({
+		_jQuery_ajax({
 		    // URL for request
 		    url : _url,
 		 
 		    // Data for send on request
 		    data : _scsRequest.data,
 		 
-		    // type of request POST | GET
-		    type : _scsRequest.type,
+		    // method of request POST | GET
+		    // type : _scsRequest.type,
+		    type: _scsRequest.type,
 		 
 		    // response type
 		    dataType : _scsRequest.dataType,
+		    
+		    // content type
+		    contentType: _scsRequest.contentType,
 		 
 		    // on success
 		    _onSuccess : function(data) {
 		        
-		    	// Emit event Nodelist_Received
-//		    	let event = new Event(scsClient.CONSTANTS.Events.Nodelist_Received,
-//		    			{
-//		    				"data": data
-//		    			});
-//		    	
-//		    	scsClient.dispatchEvent(event);
-		    	
-		    	console.log("<~i~> exec_SCSRequest._onSuccess");	// TODO REMOVE DEBUG LOG
-		    	console.log(data);	// TODO REMOVE DEBUG LOG
+		    	// console.log("<~i~> exec_SCSRequest._onSuccess");	// TODO REMOVE DEBUG LOG
+		    	// console.log(data);	// TODO REMOVE DEBUG LOG
 
 		    	if (_reqOptions._onSuccess !== undefined) {
 		    		_reqOptions._onSuccess(data);
@@ -160,8 +155,8 @@ function exec_SCSRequest(options) {
 		    // on error
 		    _onError : function(data) {
 		    	
-		    	console.log("<~i~> exec_SCSRequest._onError");	// TODO REMOVE DEBUG LOG
-		    	console.log(data);	// TODO REMOVE DEBUG LOG
+		    	// console.log("<~i~> exec_SCSRequest._onError");	// TODO REMOVE DEBUG LOG
+		    	// console.log(data);	// TODO REMOVE DEBUG LOG
 		    	
 		    	if (_reqOptions._onError !== undefined) {
 		    		_reqOptions._onError(data);
@@ -174,8 +169,8 @@ function exec_SCSRequest(options) {
 		    // on complete
 		    _onComplete : function(data) {
 		    	
-		    	console.log("<~i~> exec_SCSRequest._onComplete");	// TODO REMOVE DEBUG LOG
-		    	console.log(data);	// TODO REMOVE DEBUG LOG
+		    	// console.log("<~i~> exec_SCSRequest._onComplete");	// TODO REMOVE DEBUG LOG
+		    	// console.log(data);	// TODO REMOVE DEBUG LOG
 		    	
 		    	if (_reqOptions._onComplete !== undefined) {
 		    		_reqOptions._onComplete(data);
