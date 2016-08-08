@@ -23,9 +23,11 @@ class SCS_Requests_forEngines {
 	
 	
 	/**
-	 * Get sensors list
+	 * Get list of engines
 	 * 
 	 * @param {object} options - Options
+	 * @param {object} options.ngntype - Engine type. ('sensors', 'actuators')
+	 * 
 	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
 	 * @param {function} [options._onSuccess] - Function to run on success
 	 * @param {function} [options._onError] - Function to run on error
@@ -35,23 +37,39 @@ class SCS_Requests_forEngines {
 	 * 
 	 * @returns {Promise}
 	 */
-	get_SensorsList(options) {
+	get_EnginesList(options) {
 		
 		if (options === undefined ||
 				options === null) {
 			options = {};
 		}
 		
-		
-		let _scsClient = null;
 		if (options.scsClient === undefined) {
 			throw "scsClient is required";
 		}
-		_scsClient = options.scsClient;
+		let _scsClient = options.scsClient;
 		
+		
+		if (options.ngntype === undefined) {
+			throw "ngntype is required";
+		}
+		let _ngntype = options.ngntype;
+		
+		switch (_ngntype) {
+			case 'sensors':
+			case 'actuators':
+				break;
+	
+			default:
+				throw "ngntype is wrong.";
+		}
+		
+		
+		let _url = "/ngn/" + _ngntype + "/list";
+
 		return _scsClient.exec_SCS_Request({
 			"scsRequest": {
-				"url": "/ngn/Sensors/List",
+				"url":  _url,
 				"type": "GET",
 				"data": null,
 				"dataType": "json",
@@ -64,9 +82,12 @@ class SCS_Requests_forEngines {
 	
 	
 	/**
-	 * Get actuators list
+	 * Get Engine info
 	 * 
 	 * @param {object} options - Options
+	 * @param {object} options.ngntype - Engine type. ('sensors', 'actuators')
+	 * @param {string} options.ngnID - engine ID
+	 * 
 	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
 	 * @param {function} [options._onSuccess] - Function to run on success
 	 * @param {function} [options._onError] - Function to run on error
@@ -76,23 +97,43 @@ class SCS_Requests_forEngines {
 	 * 
 	 * @returns {Promise}
 	 */
-	get_ActuatorsList(options) {
+	get_EngineInfo(options) {
 		
 		if (options === undefined ||
 				options === null) {
 			options = {};
 		}
 		
-		
-		let _scsClient = null;
 		if (options.scsClient === undefined) {
 			throw "scsClient is required";
 		}
-		_scsClient = options.scsClient;
+		let _scsClient = options.scsClient;
+
+		if (options.ngntype === undefined) {
+			throw "ngntype is required";
+		}
+		let _ngntype = options.ngntype;
+		
+		if (options.ngnID === undefined) {
+			throw "ngnID is required";
+		}
+		let _ngnID = options.ngnID;
+		
+		switch (_ngntype) {
+			case 'sensors':
+			case 'actuators':
+				break;
+	
+			default:
+				throw "ngntype is wrong.";
+		}
+		
+		// http://{{stServer}}:{{cc}}/ngn/Sensors/{{nodeID}}.{{sensorID}}/info
+		let _url = "/ngn/" + _ngntype + "/" + _ngnID + "/info";
 		
 		return _scsClient.exec_SCS_Request({
 			"scsRequest": {
-				"url": "/ngn/Actuators/List",
+				"url": _url,
 				"type": "GET",
 				"data": null,
 				"dataType": "json",
@@ -105,10 +146,13 @@ class SCS_Requests_forEngines {
 	
 	
 	/**
-	 * Get sensor info
+	 * Get engine options
 	 * 
 	 * @param {object} options - Options
-	 * @param {string} options.sensorID - sensor ID
+	 * @param {object} options.ngntype - Engine type. ('sensors', 'actuators')
+	 * @param {string} options.ngnID - engine ID
+	 * 
+	 * 
 	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
 	 * @param {function} [options._onSuccess] - Function to run on success
 	 * @param {function} [options._onError] - Function to run on error
@@ -118,27 +162,42 @@ class SCS_Requests_forEngines {
 	 * 
 	 * @returns {Promise}
 	 */
-	get_SensorInfo(options) {
+	get_EngineOptions(options) {
 		
 		if (options === undefined ||
 				options === null) {
 			options = {};
 		}
-		
-		
-		if (options.sensorID === undefined) {
-			throw "sensorID is required";
-		}
-		let _sensorID = options.sensorID;
 		
 		
 		if (options.scsClient === undefined) {
 			throw "scsClient is required";
 		}
 		let _scsClient = options.scsClient;
+
+		if (options.ngntype === undefined) {
+			throw "ngntype is required";
+		}
+		let _ngntype = options.ngntype;
+		
+		if (options.ngnID === undefined) {
+			throw "ngnID is required";
+		}
+		let _ngnID = options.ngnID;
+		
+		switch (_ngntype) {
+			case 'sensors':
+			case 'actuators':
+				break;
+	
+			default:
+				throw "ngntype is wrong.";
+		}
+
 		
 		// http://{{stServer}}:{{cc}}/ngn/Sensors/{{nodeID}}.{{sensorID}}/options
-		let _url = "/ngn/Sensors/" + _sensorID + "/info";
+		let _url = "/ngn/" + _ngntype + "/" + _ngnID + "/options";
+
 		
 		return _scsClient.exec_SCS_Request({
 			"scsRequest": {
@@ -155,10 +214,13 @@ class SCS_Requests_forEngines {
 	
 	
 	/**
-	 * Get actuator info
+	 * Set engine options
 	 * 
 	 * @param {object} options - Options
-	 * @param {string} options.actuatorID - actuator ID
+	 * @param {object} options.ngntype - Engine type. ('sensors', 'actuators')
+	 * @param {string} options.ngnID - engine ID
+	 * @param {object} options.ngnOptions - engine options
+	 * 
 	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
 	 * @param {function} [options._onSuccess] - Function to run on success
 	 * @param {function} [options._onError] - Function to run on error
@@ -168,7 +230,7 @@ class SCS_Requests_forEngines {
 	 * 
 	 * @returns {Promise}
 	 */
-	get_ActuatorInfo(options) {
+	set_EngineOptions(options) {
 		
 		if (options === undefined ||
 				options === null) {
@@ -176,177 +238,42 @@ class SCS_Requests_forEngines {
 		}
 		
 		
-		if (options.actuatorID === undefined) {
-			throw "actuatorID is required";
-		}
-		let _actuatorID = options.actuatorID;
-		
-		
 		if (options.scsClient === undefined) {
 			throw "scsClient is required";
 		}
 		let _scsClient = options.scsClient;
+
+		if (options.ngntype === undefined) {
+			throw "ngntype is required";
+		}
+		let _ngntype = options.ngntype;
 		
-		// http://{{stServer}}:{{cc}}/ngn/Actuators/{{nodeID}}.{{actuatorID}}/options
-		let _url = "/ngn/Actuators/" + _actuatorID + "/info";
+		if (options.ngnID === undefined) {
+			throw "ngnID is required";
+		}
+		let _ngnID = options.ngnID;
 		
-		return _scsClient.exec_SCS_Request({
-			"scsRequest": {
-				"url": _url,
-				"type": "GET",
-				"data": null,
-				"dataType": "json",
-				
-				"options": options
-			}
-		});
+		if (options.ngnOptions === undefined) {
+			throw "ngnOptions is required";
+		}
+		let _ngnOptions = options.ngnOptions;
+
 		
-	}
+		switch (_ngntype) {
+			case 'sensors':
+			case 'actuators':
+				break;
 	
-	
-	/**
-	 * Get sensor options
-	 * 
-	 * @param {object} options - Options
-	 * @param {string} options.sensorID - sensor ID
-	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
-	 * @param {function} [options._onSuccess] - Function to run on success
-	 * @param {function} [options._onError] - Function to run on error
-	 * @param {function} [options._onComplete] - Function to run on complete
-	 * 
-	 * @throws Exception
-	 * 
-	 * @returns {Promise}
-	 */
-	get_SensorOptions(options) {
-		
-		if (options === undefined ||
-				options === null) {
-			options = {};
+			default:
+				throw "ngntype is wrong.";
 		}
-		
-		
-		if (options.sensorID === undefined) {
-			throw "sensorID is required";
-		}
-		let _sensorID = options.sensorID;
-		
-		
-		if (options.scsClient === undefined) {
-			throw "scsClient is required";
-		}
-		let _scsClient = options.scsClient;
 		
 		// http://{{stServer}}:{{cc}}/ngn/Sensors/{{nodeID}}.{{sensorID}}/options
-		let _url = "/ngn/Sensors/" + _sensorID + "/options";
-		
-		return _scsClient.exec_SCS_Request({
-			"scsRequest": {
-				"url": _url,
-				"type": "GET",
-				"data": null,
-				"dataType": "json",
-				
-				"options": options
-			}
-		});
-		
-	}
-	
-	
-	/**
-	 * Get actuator options
-	 * 
-	 * @param {object} options - Options
-	 * @param {string} options.actuatorID - actuator ID
-	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
-	 * @param {function} [options._onSuccess] - Function to run on success
-	 * @param {function} [options._onError] - Function to run on error
-	 * @param {function} [options._onComplete] - Function to run on complete
-	 * 
-	 * @throws Exception
-	 * 
-	 * @returns {Promise}
-	 */
-	get_ActuatorOptions(options) {
-		
-		if (options === undefined ||
-				options === null) {
-			options = {};
-		}
-		
-		
-		if (options.actuatorID === undefined) {
-			throw "actuatorID is required";
-		}
-		let _actuatorID = options.actuatorID;
-		
-		
-		if (options.scsClient === undefined) {
-			throw "scsClient is required";
-		}
-		let _scsClient = options.scsClient;
-		
-		// http://{{stServer}}:{{cc}}/ngn/Actuators/{{nodeID}}.{{actuatorID}}/options
-		let _url = "/ngn/Actuators/" + _actuatorID + "/options";
-		
-		return _scsClient.exec_SCS_Request({
-			"scsRequest": {
-				"url": _url,
-				"type": "GET",
-				"data": null,
-				"dataType": "json",
-				
-				"options": options
-			}
-		});
-		
-	}
-	
-	
-	/**
-	 * Set sensor options
-	 * 
-	 * @param {object} options - Options
-	 * @param {string} options.sensorID - sensor ID
-	 * @param {object} options.sensorOptions - sensor options
-	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
-	 * @param {function} [options._onSuccess] - Function to run on success
-	 * @param {function} [options._onError] - Function to run on error
-	 * @param {function} [options._onComplete] - Function to run on complete
-	 * 
-	 * @throws Exception
-	 * 
-	 * @returns {Promise}
-	 */
-	set_SensorOptions(options) {
-		
-		if (options === undefined ||
-				options === null) {
-			options = {};
-		}
-		
-		
-		if (options.sensorID === undefined) {
-			throw "sensorID is required";
-		}
-		let _sensorID = options.sensorID;
-		
-		if (options.sensorOptions === undefined) {
-			throw "sensorOptions is required";
-		}
-		let _sensorOptions = options.sensorOptions;
-		
-		if (options.scsClient === undefined) {
-			throw "scsClient is required";
-		}
-		let _scsClient = options.scsClient;
-		
-		// http://{{stServer}}:{{cc}}/ngn/Sensors/{{nodeID}}.{{sensorID}}/options
-		let _url = "/ngn/Sensors/" + _sensorID + "/options/";
+		let _url = "/ngn/" + _ngntype + "/" + _ngnID + "/options";
+
 		
 		var _postData = {
-			'options': _sensorOptions
+			'options': _ngnOptions
 		};
 		
 		
@@ -366,11 +293,14 @@ class SCS_Requests_forEngines {
 	
 	
 	/**
-	 * Set actuator options
+	 * Control engine
 	 * 
 	 * @param {object} options - Options
-	 * @param {string} options.actuatorID - actuator ID
-	 * @param {object} options.actuatorOptions - actuator options
+	 * @param {object} options.ngntype - Engine type. ('sensors', 'actuators')
+	 * @param {string} options.ngnID - engine ID
+	 * @param {object} options.ctrlCommand - Control command ('start' or 'stop')
+	 * 
+	 * 
 	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
 	 * @param {function} [options._onSuccess] - Function to run on success
 	 * @param {function} [options._onError] - Function to run on error
@@ -380,7 +310,7 @@ class SCS_Requests_forEngines {
 	 * 
 	 * @returns {Promise}
 	 */
-	set_ActuatorOptions(options) {
+	control_Engine(options) {
 		
 		if (options === undefined ||
 				options === null) {
@@ -388,78 +318,48 @@ class SCS_Requests_forEngines {
 		}
 		
 		
-		if (options.actuatorID === undefined) {
-			throw "actuatorID is required";
-		}
-		let _actuatorID = options.actuatorID;
-		
-		if (options.actuatorOptions === undefined) {
-			throw "actuatorOptions is required";
-		}
-		let _actuatorOptions = options.actuatorOptions;
-		
 		if (options.scsClient === undefined) {
 			throw "scsClient is required";
 		}
 		let _scsClient = options.scsClient;
+
+		if (options.ngntype === undefined) {
+			throw "ngntype is required";
+		}
+		let _ngntype = options.ngntype;
 		
-		// http://{{stServer}}:{{cc}}/ngn/Actuators/{{nodeID}}.{{actuatorID}}/options
-		let _url = "/ngn/Actuators/" + _actuatorID + "/options/";
+		if (options.ngnID === undefined) {
+			throw "ngnID is required";
+		}
+		let _ngnID = options.ngnID;
 		
-		var _postData = {
-				'options': _actuatorOptions
-			};
-		
-		return _scsClient.exec_SCS_Request({
-			"scsRequest": {
-				"url": _url,
-				"type": "POST",
-				"data": JSON.stringify(_postData),
-				"dataType": "json",
-				"contentType": "application/json; charset=utf-8",
-				
-				"options": options
-			}
-		});
-		
-	}
+		if (options.ctrlCommand === undefined) {
+			throw "ctrlCommand is required";
+		}
+		let _ctrlCommand = options.ctrlCommand;
+
+		switch (_ngntype) {
+			case 'sensors':
+			case 'actuators':
+				break;
 	
+			default:
+				throw "ngntype is wrong.";
+		}
+
+		switch (_ctrlCommand) {
+			case 'start':
+			case 'stop':
+				break;
 	
-	/**
-	 * Start sensor
-	 * 
-	 * @param {object} options - Options
-	 * @param {string} options.sensorID - sensor ID
-	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
-	 * @param {function} [options._onSuccess] - Function to run on success
-	 * @param {function} [options._onError] - Function to run on error
-	 * @param {function} [options._onComplete] - Function to run on complete
-	 * 
-	 * @throws Exception
-	 * 
-	 * @returns {Promise}
-	 */
-	start_Sensor(options) {
-		
-		if (options === undefined ||
-				options === null) {
-			options = {};
+			default:
+				throw "ctrlCommand is wrong.";
 		}
 		
-		
-		if (options.sensorID === undefined) {
-			throw "sensorID is required";
-		}
-		let _sensorID = options.sensorID;
-		
-		
-		if (options.scsClient === undefined) {
-			throw "scsClient is required";
-		}
-		let _scsClient = options.scsClient;
 		
 		// http://{{stServer}}:{{cc}}/ngn/Sensors/{{nodeID}}.{{sensorID}}/start
-		let _url = "/ngn/Sensors/" + _sensorID + "/start";
+		let _url = "/ngn/" + _ngntype + "/" + _ngnID + "/" + _ctrlCommand;
+
 		
 		return _scsClient.exec_SCS_Request({
 			"scsRequest": {
@@ -474,156 +374,6 @@ class SCS_Requests_forEngines {
 		
 	}
 	
-	
-	/**
-	 * Start actuator
-	 * 
-	 * @param {object} options - Options
-	 * @param {string} options.actuatorID - actuator ID
-	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
-	 * @param {function} [options._onSuccess] - Function to run on success
-	 * @param {function} [options._onError] - Function to run on error
-	 * @param {function} [options._onComplete] - Function to run on complete
-	 * 
-	 * @throws Exception
-	 * 
-	 * @returns {Promise}
-	 */
-	start_Actuator(options) {
-		
-		if (options === undefined ||
-				options === null) {
-			options = {};
-		}
-		
-		
-		if (options.actuatorID === undefined) {
-			throw "actuatorID is required";
-		}
-		let _actuatorID = options.actuatorID;
-		
-		
-		if (options.scsClient === undefined) {
-			throw "scsClient is required";
-		}
-		let _scsClient = options.scsClient;
-		
-		// http://{{stServer}}:{{cc}}/ngn/Actuators/{{nodeID}}.{{actuatorID}}/start
-		let _url = "/ngn/Actuators/" + _actuatorID + "/start";
-		
-		return _scsClient.exec_SCS_Request({
-			"scsRequest": {
-				"url": _url,
-				"type": "GET",
-				"data": null,
-				"dataType": "json",
-				
-				"options": options
-			}
-		});
-		
-	}
-	
-	
-	
-	/**
-	 * Stop sensor
-	 * 
-	 * @param {object} options - Options
-	 * @param {string} options.sensorID - sensor ID
-	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
-	 * @param {function} [options._onSuccess] - Function to run on success
-	 * @param {function} [options._onError] - Function to run on error
-	 * @param {function} [options._onComplete] - Function to run on complete
-	 * 
-	 * @throws Exception
-	 * 
-	 * @returns {Promise}
-	 */
-	stop_Sensor(options) {
-		
-		if (options === undefined ||
-				options === null) {
-			options = {};
-		}
-		
-		
-		if (options.sensorID === undefined) {
-			throw "sensorID is required";
-		}
-		let _sensorID = options.sensorID;
-		
-		
-		if (options.scsClient === undefined) {
-			throw "scsClient is required";
-		}
-		let _scsClient = options.scsClient;
-		
-		// http://{{stServer}}:{{cc}}/ngn/Sensors/{{nodeID}}.{{sensorID}}/stop
-		let _url = "/ngn/Sensors/" + _sensorID + "/stop";
-		
-		return _scsClient.exec_SCS_Request({
-			"scsRequest": {
-				"url": _url,
-				"type": "GET",
-				"data": null,
-				"dataType": "json",
-				
-				"options": options
-			}
-		});
-		
-	}
-	
-	
-	/**
-	 * Stop actuator
-	 * 
-	 * @param {object} options - Options
-	 * @param {string} options.actuatorID - actuator ID
-	 * @param {st.forbrowser.services.SCS_Client} options.scsClient - SCS_Client
-	 * @param {function} [options._onSuccess] - Function to run on success
-	 * @param {function} [options._onError] - Function to run on error
-	 * @param {function} [options._onComplete] - Function to run on complete
-	 * 
-	 * @throws Exception
-	 * 
-	 * @returns {Promise}
-	 */
-	stop_Actuator(options) {
-		
-		if (options === undefined ||
-				options === null) {
-			options = {};
-		}
-		
-		
-		if (options.actuatorID === undefined) {
-			throw "actuatorID is required";
-		}
-		let _actuatorID = options.actuatorID;
-		
-		
-		if (options.scsClient === undefined) {
-			throw "scsClient is required";
-		}
-		let _scsClient = options.scsClient;
-		
-		// http://{{stServer}}:{{cc}}/ngn/Actuators/{{nodeID}}.{{actuatorID}}/stop
-		let _url = "/ngn/Actuators/" + _actuatorID + "/stop";
-		
-		return _scsClient.exec_SCS_Request({
-			"scsRequest": {
-				"url": _url,
-				"type": "GET",
-				"data": null,
-				"dataType": "json",
-				
-				"options": options
-			}
-		});
-		
-	}
 	
 }
 
